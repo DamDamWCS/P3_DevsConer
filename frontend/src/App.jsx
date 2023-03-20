@@ -22,7 +22,10 @@ function App() {
       })
         .then((response) => response.json())
         .then((result) => setUser(result))
-        .catch(() => setIsLoggedIn());
+        .catch((error) => {
+          console.error(error);
+          setIsLoggedIn();
+        });
     }
   }, [isLoggedIn, reload]);
 
