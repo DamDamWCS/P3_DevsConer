@@ -1,5 +1,4 @@
 /* eslint-disable react/require-default-props */
-/* eslint-disable no-nested-ternary */
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import DeleteItem from "../deleteItem/DeleteItem";
@@ -9,6 +8,10 @@ import openCloseSubject from "./subjectFunctions";
 function Subject({ subject, reload, setReload, setShowModalEditSubject }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { user } = useContext(TokenContext);
+
+  const HandleopenCloseSubject = () => {
+    openCloseSubject(subject.id, subject.status_resolve, reload, setReload);
+  };
 
   // Gestion de la date
   const formatDateOptions = {
@@ -52,33 +55,13 @@ function Subject({ subject, reload, setReload, setShowModalEditSubject }) {
       {user && subject && (
         <div className="d-flex align-items-center px-sm-3 pb-sm-3">
           {subject.user_id === user.id ? (
-            subject.status_resolve ? (
-              <button
-                type="submit"
-                className="btn btn-success btn-sm mr-3 text-white mb-2 mb-sm-0"
-                onClick={() => {
-                  openCloseSubject(subject.id, subject.status_resolve).then(
-                    () => setReload(!reload)
-                  );
-                }}
-              >
-                Réouvrir
-              </button>
-            ) : (
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-success btn-sm mr-3 text-white mb-2 mb-sm-0"
-                  onClick={() => {
-                    openCloseSubject(subject.id, subject.status_resolve).then(
-                      () => setReload(!reload)
-                    );
-                  }}
-                >
-                  Cloturer
-                </button>
-              </div>
-            )
+            <button
+              type="submit"
+              className="btn btn-success btn-sm mr-3 text-white mb-2 mb-sm-0"
+              onClick={HandleopenCloseSubject}
+            >
+              {subject.status_resolve ? "Réouvrir" : "Cloturer"}
+            </button>
           ) : (
             <div />
           )}

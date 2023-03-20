@@ -162,7 +162,7 @@ function SubjectPage() {
       {currentItems && (
         <>
           {currentItems.map((elem) => (
-            <div className="w-100 contenairSubject mb-4">
+            <div key={elem.id} className="w-100 contenairSubject mb-4">
               <Answer
                 user={user}
                 answer={elem}

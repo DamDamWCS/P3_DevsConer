@@ -1,5 +1,4 @@
-async function openCloseSubject(subjectId, status) {
-  console.warn("CLOSE SUBJECT", subjectId);
+async function openCloseSubject(subjectId, status, reload, setReload) {
   let newStatus = status;
   if (status) newStatus = 0;
   else newStatus = 1;
@@ -14,11 +13,8 @@ async function openCloseSubject(subjectId, status) {
       status_resolve: newStatus,
     }),
   })
-    .then((response) => {
-      if (response.status === 204) {
-        return true;
-      }
-      return response.json();
+    .then(() => {
+      return setReload(!reload);
     })
     .catch((err) => {
       console.error("erreur dans openCloseSubject", err);
