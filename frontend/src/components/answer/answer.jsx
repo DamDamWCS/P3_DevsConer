@@ -20,6 +20,7 @@ function Answer({
 }) {
   const [showCreateComment, setShowCreateComment] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [reloadComments, setReloadComments] = useState(false);
   const [currentAnswer] = useState(answer);
   const [comments, setComments] = useState();
   const [showModifAnswer, setShowModifAnswer] = useState(false);
@@ -42,7 +43,7 @@ function Answer({
       .catch((error) => {
         console.warn(error.message);
       });
-  }, [reload]);
+  }, [reloadComments]);
 
   // Gestion de la date
   const formatDateOptions = {
@@ -167,8 +168,8 @@ function Answer({
           <Comment
             key={comment.id}
             comment={comment}
-            reload={reload}
-            setReload={setReload}
+            reload={reloadComments}
+            setReload={setReloadComments}
             onCommentDeleted={() => {
               setComments(comments.filter((c) => c.id !== comment.id));
             }}
@@ -186,8 +187,8 @@ function Answer({
           showCreateComment={showCreateComment}
           setShowCreateComment={setShowCreateComment}
           currentAnswer={currentAnswer.id}
-          reload={reload}
-          setReload={setReload}
+          reload={reloadComments}
+          setReload={setReloadComments}
         />
       ) : (
         <div className="d-flex flex-row-reverse mr-sm-3 mb-sm-2">

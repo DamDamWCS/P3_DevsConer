@@ -21,6 +21,7 @@ function SubjectPage() {
   const { user } = useContext(TokenContext);
   const [isLoading, setIsloading] = useState(false);
   const [reload, setReload] = useState(false);
+  const [reloadAnswers, setReloadAnswers] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   // PAGINATION
@@ -83,7 +84,7 @@ function SubjectPage() {
           console.warn(error.message);
         });
     }
-  }, [subject, reload]);
+  }, [subject, reloadAnswers]);
   return (
     <div className="d-flex flex-column align-items-center b-shadow flex-grow-1 rounded bg-white m-3 m-sm-4 py-3 px-2 ">
       {isLoading && <div>Chargement</div>}
@@ -121,8 +122,8 @@ function SubjectPage() {
           />
           <AddAnswer
             subjectId={subject.id}
-            reload={reload}
-            setReload={setReload}
+            reload={reloadAnswers}
+            setReload={setReloadAnswers}
           />
         </div>
       )}
@@ -141,8 +142,8 @@ function SubjectPage() {
                   bestAnswerId={subject.best_answer}
                   subjectUserId={subject.user_id}
                   subjectId={subject.id}
-                  reload={reload}
-                  setReload={setReload}
+                  reload={reloadAnswers}
+                  setReload={setReloadAnswers}
                   onAnswerDeleted={onAnswerDeleted}
                 />
               </div>

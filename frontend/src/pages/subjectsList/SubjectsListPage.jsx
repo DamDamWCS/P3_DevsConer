@@ -55,7 +55,7 @@ function SubjectListPage() {
   }, [selectedValue, reload]);
 
   // PAGINATION
-  const itemsPerPage = 3;
+  const itemsPerPage = 10;
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = subjects.slice(itemOffset, endOffset);
