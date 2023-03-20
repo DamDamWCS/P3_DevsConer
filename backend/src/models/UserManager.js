@@ -27,7 +27,6 @@ class UserManager extends AbstractManager {
   }
 
   updateInformation(user) {
-    console.error(user);
     return this.database.query(
       `update ${this.table} set first_name =?, last_name=?, email = ? where id = ?`,
       [user.firstname, user.lastname, user.email, user.id]
@@ -42,7 +41,6 @@ class UserManager extends AbstractManager {
   }
 
   updatePassword(user, body) {
-    console.error("UPDATE PASSWORD", body);
     return this.database.query(
       `update ${this.table} set hashedPassword = ? where id = ?`,
       [body.hashedPassword, user.id]
