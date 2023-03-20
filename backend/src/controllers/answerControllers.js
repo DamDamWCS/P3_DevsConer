@@ -1,8 +1,6 @@
 const models = require("../models");
 
 const validateAnswerPost = (req, res, next) => {
-  // middleware validate req.body then call next() if everything is ok
-
   const { text } = req.body;
   const errors = [];
   if (text === null) {
@@ -29,7 +27,6 @@ const validateAnswerPost = (req, res, next) => {
 };
 
 const validateAnswerPut = (req, res, next) => {
-  // middleware validate req.body then call next() if everything is ok
   const { text, note } = req.body;
   const errors = [];
   if (note === null) {
@@ -51,7 +48,7 @@ const validateAnswerPut = (req, res, next) => {
   ) {
     next();
   } else {
-    res.status(422).json("incorrect data structures");
+    res.status(422).json("Structure des données incorrect");
   }
   if (errors.length) {
     res.status(422).json({ validationErrors: errors });
@@ -71,16 +68,11 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  // const errors = [];
   models.answer
     .findAnswerToSubject(req.params.subject_id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.send([]);
-        // errors.push({
-        //   message: "Il n'y a pas de réponse pour le moment",
-        // });
-        // res.status(404).json({ validationErrors: errors });
       } else {
         res.send(rows);
       }
@@ -93,9 +85,7 @@ const read = (req, res) => {
 
 const edit = (req, res) => {
   const { text } = req.body;
-  // TODO validations (length, format...);
   const answerId = parseInt(req.params.id, 10);
-  console.info(answerId);
   models.answer
     .update(text, answerId)
     .then(([result]) => {
@@ -114,7 +104,6 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const answer = req.body;
   const idToken = req.payload.userId;
-  // TODO validations (length, format...)
   models.answer
     .insert(answer, idToken)
     .then(() => {

@@ -9,15 +9,16 @@ const answerControllers = require("./controllers/answerControllers");
 const commentControllers = require("./controllers/commentControllers");
 const tagControllers = require("./controllers/tagControllers");
 
-/* Public Route */
-// LOGIN
+/* PUBLIC ROUTE */
+
+// Login
 router.post(
   "/api/login",
   userControllers.verifySyntax,
   userControllers.login,
   auth.verifyPassword
 );
-// REGISTER
+// Register
 router.post(
   "/api/users",
   userControllers.verifySyntax,
@@ -25,13 +26,10 @@ router.post(
   userControllers.add
 );
 
-/* Private Route */
-router.use(auth.verifyToken); // authentication wall : verifyToken is activated for each route after this line
-/* INSERT BELOW ROUTE WHO DON'T NEED AUthorization */
-// route login /me :
-router.get("/api/users/me", userControllers.readMe);
+/* PRIVATE ROUTE */
+router.use(auth.verifyToken);
 
-// route subjects :
+// Subjects
 router.get("/api/subjects", subjectControllers.browse);
 router.get("/api/subjects/:id", subjectControllers.read);
 router.post(
@@ -47,27 +45,22 @@ router.put(
 );
 router.delete("/api/subjects/:id", auth.checkUser, subjectControllers.destroy);
 
+// Tags
 router.get("/api/tags", tagControllers.browse);
-// Route answer :
+
+// Answer
 router.get("/api/answers", answerControllers.browse);
 router.get("/api/answers/:subject_id", answerControllers.read);
-
-router.put(
-  "/api/answers/:id",
-
-  answerControllers.edit
-);
-
+router.put("/api/answers/:id", answerControllers.edit);
 router.post(
   "/api/answers",
   answerControllers.validateAnswerPost,
   answerControllers.add
 );
-
 router.delete("/api/answers/:id", answerControllers.destroy);
-// Route comments :
 
-router.get("/api/comments", commentControllers.browse); // a supprimer a la fin nico
+// Comments
+router.get("/api/comments", commentControllers.browse);
 router.get("/api/comments/:answerId", commentControllers.findByAnswer);
 router.post(
   "/api/comments",
@@ -82,15 +75,24 @@ router.put(
 );
 router.delete("/api/comments/:id", auth.checkUser, commentControllers.destroy);
 
-// MODIFY INFORMATIONS
+// Users
+router.get("/api/users/me", userControllers.readMe);
+router.get("/api/users", auth.checkUser, userControllers.browse);
+router.get("/api/users/:id", auth.checkUser, userControllers.read);
 router.put(
   "/api/users/:id",
   auth.checkUser,
   userControllers.verifySyntax,
   userControllers.edit
 );
+router.put(
+  "/api/users/:id/disable",
+  auth.checkUser,
+  userControllers.changeState
+);
+router.delete("/api/users/:id", auth.checkUser, userControllers.destroy);
 
-// MODIFY PASSWORD
+// Password
 router.put(
   "/api/users/:id/modifyPassword",
   auth.checkUser,
@@ -100,15 +102,5 @@ router.put(
   auth.hashPassword,
   auth.changePassword
 );
-
-router.put(
-  "/api/users/:id/disable",
-  auth.checkUser,
-  userControllers.changeState
-);
-
-router.get("/api/users", auth.checkUser, userControllers.browse);
-router.get("/api/users/:id", auth.checkUser, userControllers.read); // NON UTILE
-router.delete("/api/users/:id", auth.checkUser, userControllers.destroy);
 
 module.exports = router;

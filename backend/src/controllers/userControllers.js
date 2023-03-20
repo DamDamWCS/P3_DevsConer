@@ -58,12 +58,11 @@ const edit = (req, res) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else {
-        console.error("EDIT - MISE A JOUR OK");
         res.sendStatus(204);
       }
     })
     .catch((err) => {
-      console.error("MY ERROR IN EDIT", err);
+      console.error("error :", err);
       res.sendStatus(500);
     });
 };
@@ -84,7 +83,6 @@ const add = (req, res) => {
 };
 
 const login = (req, res, next) => {
-  console.error("REQUETE", req.body);
   const { body } = req;
   const errors = [];
 

@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const argon2 = require("argon2");
 const models = require("../models");
 const jwt = require("../../node_modules/jsonwebtoken");
-// const subjectControllers = require("./controllers/subjectControllers");
 
 const hashingOptions = {
   type: argon2.argon2id,
@@ -12,18 +10,16 @@ const hashingOptions = {
 };
 
 const hashPassword = (req, res, next) => {
-  // hash the password using argon2 then call next()
-  // const hashedPassword = await argon2.hash(password, hashingOptions);
   if (req.body.newPassword) {
     req.body.password = req.body.newPassword;
     delete req.body.newPassword;
   }
 
   argon2
-    .hash(req.body.password, hashingOptions) // récupère la valeur de password
+    .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
-      req.body.hashedPassword = hashedPassword; // ici on créer la clé hashedPassword et attribut la valeur
-      delete req.body.password; // on supprime la valeur clé password
+      req.body.hashedPassword = hashedPassword;
+      delete req.body.password;
       next();
     })
     .catch((err) => {
@@ -75,7 +71,6 @@ const verifyPassword = (req, res, next) => {
         if (req.body.newPassword) {
           next();
         } else {
-          // value to control for the payload
           const payload = {
             userId: req.user.id,
             userRole: req.user.role,
@@ -100,9 +95,6 @@ const verifyPassword = (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    // const { headers } = req;
-    // console.error("REQUETE", headers.authorization.split(" ")[1]);
-
     const authorizationHeader = req.get("Authorization");
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing");
@@ -115,7 +107,7 @@ const verifyToken = (req, res, next) => {
     }
 
     req.payload = jwt.verify(token, process.env.JWT_SECRET);
-    // console.error("VERIFY TOKEN OK");
+
     next();
   } catch (err) {
     console.error(err);

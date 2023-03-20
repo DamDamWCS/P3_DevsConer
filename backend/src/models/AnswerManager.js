@@ -13,7 +13,6 @@ class AnswerManager extends AbstractManager {
   }
 
   update(text, id) {
-    console.info(text, id);
     return this.database.query(
       `update ${this.table} set text = ? where id = ?`,
       [text, id]

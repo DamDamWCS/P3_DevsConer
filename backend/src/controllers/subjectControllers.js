@@ -6,9 +6,11 @@ const subjectSchema = Joi.object({
   text: Joi.string().required(),
   tags: Joi.array().min(1).items(Joi.number().integer()).required(),
 }).unknown(false);
+
 const subjectStatusSchema = Joi.object({
   status_resolve: Joi.number().integer().required().valid(0, 1),
 }).unknown(false);
+
 const subjectAnwserSchema = Joi.object({
   best_anwser: Joi.number().integer().required(),
 }).unknown(false);
@@ -103,8 +105,6 @@ const read = (req, res) => {
     .then(([rows]) => {
       if (rows[0].id == null) {
         res.status(404).send(JSON.stringify({ id: 0 }));
-        // console.log("je ne suis plus la");
-        // res.sendStatus(404);
       } else {
         res.send(rows[0]);
       }
@@ -114,18 +114,6 @@ const read = (req, res) => {
       res.sendStatus(500);
     });
 };
-
-// const readId = (subjectId) => {
-//   models.subject
-//     .getId(subjectId)
-//     .then(([rows]) => {
-//       // console.log(` readID : ${rows[0].user_id}`)
-//       return rows[0].user_id;
-//     })
-//     .catch((err) => {
-//       return err;
-//     });
-// };
 
 const edit = (req, res) => {
   const subjectId = parseInt(req.params.id, 10);
