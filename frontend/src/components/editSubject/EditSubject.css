@@ -1,0 +1,6 @@
+.showModal {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.errorTag {
+  border-bottom: RGB(205, 0, 55) solid 2px;
+}

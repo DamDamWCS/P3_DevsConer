@@ -1,0 +1,10 @@
+.subjectList {
+  border: 1px solid #aaaaaa;
+  background-color: #f7f6f4;
+}
+
+.subjectList:hover {
+  border: 1px solid #0294b7;
+  background-color: #e8f7ff;
+  color: #68a4db;
+}

@@ -1,0 +1,33 @@
+.navBar {
+  background-color: white;
+  border-radius: 5px;
+}
+.TitleNavBar {
+  font-size: 1.875rem;
+}
+
+a.active > .linkNavBar {
+  background-color: #0088ce;
+  color: white;
+}
+.linkNavBar {
+  text-align: center;
+  height: 100%;
+  color: #444444;
+}
+.linkNavBar:hover {
+  background-color: #f7f6f4;
+  color: #0088ce;
+}
+
+@media (min-width: 576px) {
+  .TitleNavBar {
+    font-size: 2.25rem;
+  }
+  .navBar {
+    border-radius: 0px;
+  }
+  .linkNavBar {
+    border-left: 2px solid #aaaaaa;
+  }
+}
