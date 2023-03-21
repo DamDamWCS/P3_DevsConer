@@ -86,10 +86,10 @@ function SubjectPage() {
     }
   }, [subject, reloadAnswers]);
   return (
-    <div className="d-flex flex-column align-items-center b-shadow flex-grow-1 rounded bg-white m-3 m-sm-4 py-3 px-2 ">
+    <div className="d-flex flex-column align-items-center b-shadow flex-grow-1 rounded bg-white m-3 m-sm-4 pt-3 px-2 ">
       {isLoading && <div>Chargement</div>}
       {subject.id && user && (
-        <div className="pt-4 contenairSubject w-100">
+        <div className="pt-sm-4 contenairSubject w-100">
           <div className="d-flex flex-wrap align-items-center">
             <h1 className="display-1 text-primary d-inline mt-1 ml-1 mr-3 ">
               {subject.title.toUpperCase()}
