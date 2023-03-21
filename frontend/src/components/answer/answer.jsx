@@ -99,8 +99,11 @@ function Answer({
             <span
               className="pointer"
               onClick={() => {
-                choiceBestAnswer(subjectId, currentAnswer.id).then(() =>
-                  setReload(!reload)
+                choiceBestAnswer(
+                  subjectId,
+                  currentAnswer.id,
+                  setReload,
+                  reload
                 );
               }}
               aria-hidden="true"

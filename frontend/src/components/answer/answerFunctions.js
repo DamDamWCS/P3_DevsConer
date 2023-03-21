@@ -1,4 +1,4 @@
-async function choiceBestAnswer(subjectId, answerId) {
+async function choiceBestAnswer(subjectId, answerId, setReload, reload) {
   fetch(`${import.meta.env.VITE_BACKEND_URL}/api/subjects/${subjectId}`, {
     method: "PUT",
     headers: {
@@ -11,8 +11,10 @@ async function choiceBestAnswer(subjectId, answerId) {
     }),
   })
     .then((response) => {
-      if (response.status === 204) {
-        return true;
+      if (response.ok) {
+        setReload(!reload);
+      } else {
+        throw new Error("Erreur 404 : Ce sujet à été supprimé");
       }
       return response.json();
     })
