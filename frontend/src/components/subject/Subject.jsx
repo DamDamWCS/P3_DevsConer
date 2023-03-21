@@ -32,7 +32,7 @@ function Subject({ subject, reload, setReload, setShowModalEditSubject }) {
   }
 
   return (
-    <div className="rounded subject text-dark p-2 px-sm-3 my-3">
+    <div className="rounded subject text-dark p-2 px-sm-3 mt-3">
       <div className="d-flex justify-content-between flex-wrap align-items-start mt-1">
         <div className="font-weight-bold text-secondary my-auto mr-2">
           {subject.full_name

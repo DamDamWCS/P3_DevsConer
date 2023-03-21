@@ -120,11 +120,6 @@ function SubjectPage() {
             reload={reload}
             setReload={setReload}
           />
-          <AddAnswer
-            subjectId={subject.id}
-            reload={reloadAnswers}
-            setReload={setReloadAnswers}
-          />
         </div>
       )}
       {errorMessage && <div>{errorMessage}</div>}
@@ -132,7 +127,7 @@ function SubjectPage() {
         ? answers
             .filter((elem) => subject.best_answer === elem.id)
             .map((elem) => (
-              <div className="w-100 contenairSubject mb-4" key={elem.id}>
+              <div className="w-100 contenairSubject mt-4" key={elem.id}>
                 <h1 className="w-100 contenairSubject text-primary mb-4">
                   MEILLEUR REPONSE
                 </h1>
@@ -149,7 +144,7 @@ function SubjectPage() {
               </div>
             ))
         : null}
-      <div className="w-100 contenairSubject">
+      <div className="pt-4 w-100 contenairSubject">
         {answers && (
           <h1 className="d-flex justify-content-between text-primary mb-4">
             {answers.length} REPONSE{answers.length > 1 && "S"}
@@ -175,6 +170,13 @@ function SubjectPage() {
               />
             </div>
           ))}
+          <div className="contenairSubject mb-4 w-100">
+            <AddAnswer
+              subjectId={subject.id}
+              reload={reloadAnswers}
+              setReload={setReloadAnswers}
+            />
+          </div>
           <div className="ReactPaginateStyle">
             <ReactPaginate
               breakLabel="..."

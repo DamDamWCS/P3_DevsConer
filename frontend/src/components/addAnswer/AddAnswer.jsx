@@ -32,7 +32,7 @@ function AddAnswer({ subjectId, reload, setReload }) {
   };
 
   return (
-    <div className="my-4 multiSelect rounded ">
+    <div className="my-sm-4 multiSelect rounded ">
       <form onSubmit={handleSubmitAddAnswer}>
         <div className="my-3 mx-2 mx-sm-3">
           <textarea
