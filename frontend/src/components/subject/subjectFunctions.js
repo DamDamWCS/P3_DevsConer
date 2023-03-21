@@ -13,12 +13,8 @@ async function openCloseSubject(subjectId, status, reload, setReload) {
       status_resolve: newStatus,
     }),
   })
-    .then(() => {
-      return setReload(!reload);
-    })
-    .catch((err) => {
-      console.error("erreur dans openCloseSubject", err);
-    });
+    .then(() => setReload(!reload))
+    .catch((err) => console.error("erreur dans openCloseSubject", err));
 }
 
 export default openCloseSubject;
