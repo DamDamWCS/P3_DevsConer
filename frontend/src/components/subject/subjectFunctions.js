@@ -13,7 +13,13 @@ async function openCloseSubject(subjectId, status, reload, setReload) {
       status_resolve: newStatus,
     }),
   })
-    .then(() => setReload(!reload))
+    .then((response) => {
+      if (response.ok) {
+        setReload(!reload);
+      } else {
+        throw new Error("erreur 404 : ce sujet n'existe pas.");
+      }
+    })
     .catch((err) => console.error("erreur dans openCloseSubject", err));
 }
 
