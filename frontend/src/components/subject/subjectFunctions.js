@@ -17,10 +17,10 @@ async function openCloseSubject(subjectId, status, reload, setReload) {
       if (response.ok) {
         setReload(!reload);
       } else {
-        throw new Error("erreur 404 : ce sujet n'existe pas.");
+        throw new Error("erreur interne serveur");
       }
     })
-    .catch((err) => console.error("erreur dans openCloseSubject", err));
+    .catch((err) => console.error("Erreur : ", err));
 }
 
 export default openCloseSubject;

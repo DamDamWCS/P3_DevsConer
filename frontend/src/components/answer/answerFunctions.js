@@ -14,12 +14,11 @@ async function choiceBestAnswer(subjectId, answerId, setReload, reload) {
       if (response.ok) {
         setReload(!reload);
       } else {
-        throw new Error("Erreur 404 : Ce sujet à été supprimé");
+        throw new Error("Erreur interne serveur");
       }
-      return response.json();
     })
     .catch((err) => {
-      console.error("erreur dans DeleteItem", err);
+      console.error("Erreur : ", err);
     });
 }
 
