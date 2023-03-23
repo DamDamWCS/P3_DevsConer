@@ -31,13 +31,22 @@ function EditSubject({
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
     })
-      .then((response) => response.json())
-      .then((tags) => {
-        const optionsTags = tags.map((tag) => ({
-          label: tag.name,
-          value: tag.id,
-        }));
-        setOptions(optionsTags);
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((tags) => {
+            const optionsTags = tags.map((tag) => ({
+              label: tag.name,
+              value: tag.id,
+            }));
+            setOptions(optionsTags);
+          });
+        } else {
+          throw new Error("impossible de charger la liste des tags.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setErrorMessage(error);
       });
   }, []);
 
