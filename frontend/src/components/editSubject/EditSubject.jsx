@@ -90,10 +90,10 @@ function EditSubject({
           if (response.ok) {
             handleCloseModal();
             setReload(!reload);
+          } else if (response.status === 404) {
+            throw new Error("Erreur, ce sujet n'existe pas");
           } else {
-            throw new Error(
-              "Erreur serveur, votre message n'a pas été modifier"
-            );
+            throw new Error("Erreur serveur, le sujet n'a pas été modifié");
           }
         })
         .catch((error) => {

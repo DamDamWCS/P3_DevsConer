@@ -51,7 +51,11 @@ router.get("/api/tags", tagControllers.browse);
 // Answer
 router.get("/api/answers", answerControllers.browse);
 router.get("/api/answers/:subject_id", answerControllers.read);
-router.put("/api/answers/:id", answerControllers.edit);
+router.put(
+  "/api/answers/:id",
+  answerControllers.validateAnswerPut,
+  answerControllers.edit
+);
 router.post(
   "/api/answers",
   answerControllers.validateAnswerPost,
