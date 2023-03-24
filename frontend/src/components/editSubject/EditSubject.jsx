@@ -93,7 +93,7 @@ function EditSubject({
           } else if (response.status === 404) {
             throw new Error("Erreur, ce sujet n'existe pas");
           } else {
-            throw new Error("Erreur serveur, le sujet n'a pas été modifié");
+            throw new Error("Erreur serveur, le sujet n'a pu être modifié");
           }
         })
         .catch((error) => {
