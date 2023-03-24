@@ -87,17 +87,24 @@ class SubjectManager extends AbstractManager {
     );
   }
 
-  insertTag(subjectId, tagsId) {
-    return this.database.query(
-      `insert into subject_has_tag (subject_id, tag_id) values (?, ?);`,
-      [subjectId, tagsId]
-    );
-  }
-
   updateSubject(subject, subjectId) {
     return this.database.query(
       `update subject set title = ?, text = ? where id = ?`,
       [subject.title, subject.text, subjectId]
+    );
+  }
+
+  deleteTags(subjectId) {
+    return this.database.query(
+      `delete from subject_has_tag where subject_id = ?`,
+      [subjectId]
+    );
+  }
+
+  insertTag(subjectId, tagsId) {
+    return this.database.query(
+      `insert into subject_has_tag (subject_id, tag_id) values (?, ?);`,
+      [subjectId, tagsId]
     );
   }
 
@@ -112,13 +119,6 @@ class SubjectManager extends AbstractManager {
     return this.database.query(
       `update subject set best_answer_id = ? where id = ?`,
       [anwserId, subjectId]
-    );
-  }
-
-  deleteTags(subjectId) {
-    return this.database.query(
-      `delete from subject_has_tag where subject_id = ?`,
-      [subjectId]
     );
   }
 }
