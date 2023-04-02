@@ -7,7 +7,7 @@ export default function Landing() {
     <>
       <div className=" b-shadow flex-grow-1 rounded bg-white m-2 m-sm-4">
         <div className="mainPicture">
-          <div className="titleLanding text-center">Dev's CORNER</div>
+          <h1 className="titleLanding text-center">Dev's CORNER</h1>
         </div>
 
         <div className="aboutLanding mx-auto px-3 m-4">
