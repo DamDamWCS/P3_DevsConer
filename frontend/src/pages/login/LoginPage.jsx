@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import TokenContext from "../../services/context/TokenContext";
-import "./Login.css";
+import "./LoginPage.css";
 
 function Login() {
   const { setIsLoggedIn } = useContext(TokenContext);

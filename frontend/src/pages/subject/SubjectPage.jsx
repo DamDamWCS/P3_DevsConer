@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-import Subject from "../../components/subject/Subject";
-import Answer from "../../components/answer/answer";
+import Subject from "../../components/subjects/subject/Subject";
+import Answer from "../../components/answers/answer/answer";
 import TokenContext from "../../services/context/TokenContext";
-import EditSubject from "../../components/editSubject/EditSubject";
-import AddAnswer from "../../components/addAnswer/AddAnswer";
+import EditSubject from "../../components/subjects/editSubject/EditSubject";
+import AddAnswer from "../../components/answers/addAnswer/AddAnswer";
 import "./subjectPage.css";
 
 const InitData = {
@@ -137,8 +137,8 @@ function SubjectPage() {
                   bestAnswerId={subject.best_answer}
                   subjectUserId={subject.user_id}
                   subjectId={subject.id}
-                  reload={reloadAnswers}
-                  setReload={setReloadAnswers}
+                  reload={reload}
+                  setReload={setReload}
                   onAnswerDeleted={onAnswerDeleted}
                 />
               </div>

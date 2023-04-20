@@ -27,6 +27,7 @@ const validateAnswerPost = (req, res, next) => {
 };
 
 const validateAnswerPut = (req, res, next) => {
+  console.info(req.body);
   const { text, note } = req.body;
   const errors = [];
   if (note === null) {
@@ -42,12 +43,12 @@ const validateAnswerPut = (req, res, next) => {
     });
   }
   if (
-    Object.keys(req.body).length === 2 &&
-    Object.keys(req.body)[0] === "text" &&
-    Object.keys(req.body)[1] === "note"
+    Object.keys(req.body).length === 1 &&
+    Object.keys(req.body)[0] === "text"
   ) {
     next();
   } else {
+    console.info("debug");
     res.status(422).json("Structure des données incorrect");
   }
   if (errors.length) {

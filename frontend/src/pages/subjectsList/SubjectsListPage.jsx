@@ -1,10 +1,10 @@
 /* eslint-disable import/no-unresolved */
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import MultiSelected from "../../components/multiSelected/MultiSelected";
-import SubjectList from "../../components/SubjectList/SUbjectList";
+import MultiSelected from "../../components/subjects/multiSelected/MultiSelected";
+import SubjectList from "../../components/subjects/SubjectList/SUbjectList";
 import "./SubjectListPage.css";
-import CreateSubject from "../../components/createSubject/CreateSubject";
+import CreateSubject from "../../components/subjects/createSubject/CreateSubject";
 
 function SubjectListPage() {
   const [reload, setReload] = useState(false);

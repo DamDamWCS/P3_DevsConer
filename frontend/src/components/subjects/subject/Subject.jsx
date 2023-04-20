@@ -1,8 +1,8 @@
 /* eslint-disable react/require-default-props */
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
-import DeleteItem from "../deleteItem/DeleteItem";
-import TokenContext from "../../services/context/TokenContext";
+import DeleteItem from "../../deleteItem/DeleteItem";
+import TokenContext from "../../../services/context/TokenContext";
 import openCloseSubject from "./subjectFunctions";
 
 function Subject({ subject, reload, setReload, setShowModalEditSubject }) {

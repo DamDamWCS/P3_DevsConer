@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import DeleteItem from "../deleteItem/DeleteItem";
-import TokenContext from "../../services/context/TokenContext";
-import CreateComment from "../createComment/CreateComment";
-import Comment from "../comment/Comment";
+import DeleteItem from "../../deleteItem/DeleteItem";
+import TokenContext from "../../../services/context/TokenContext";
+import CreateComment from "../../comments/createComment/CreateComment";
+import Comment from "../../comments/comment/Comment";
 import choiceBestAnswer from "./answerFunctions";
 import ModifyAnswer from "../modifAnswer/ModifAnswer";
 import "./answer.css";
@@ -83,7 +83,7 @@ function Answer({
             <span
               className="pointer"
               onClick={() => {
-                choiceBestAnswer(subjectId, 0).then(() => setReload(!reload));
+                choiceBestAnswer(subjectId, 0, setReload, reload);
               }}
               aria-hidden="true"
             >
@@ -95,7 +95,7 @@ function Answer({
           ) : (
             <div className="pl-md-5" />
           )}
-          {subjectUserId === user.id && bestAnswerId !== currentAnswer.id ? (
+          {subjectUserId === user.id && bestAnswerId !== currentAnswer.id && (
             <span
               className="pointer"
               onClick={() => {
@@ -110,7 +110,7 @@ function Answer({
             >
               <i className="icons-checked icons-size-30px" aria-hidden="true" />
             </span>
-          ) : null}
+          )}
         </div>
         <div className="w-100">
           {showModifAnswer ? (

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import SubjectList from "../SubjectList/SUbjectList";
+import SubjectList from "../subjects/SubjectList/SUbjectList";
 import TokenContext from "../../services/context/TokenContext";
 
 function MySubjects() {

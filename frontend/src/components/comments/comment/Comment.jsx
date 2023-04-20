@@ -1,9 +1,9 @@
 /* eslint-disable react/require-default-props */
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
-import TokenContext from "../../services/context/TokenContext";
-import DeleteItem from "../deleteItem/DeleteItem";
-import ModifyComment from "../createComment/ModifyComment";
+import TokenContext from "../../../services/context/TokenContext";
+import DeleteItem from "../../deleteItem/DeleteItem";
+import ModifyComment from "../modifyComment/ModifyComment";
 
 function Comment({ comment, reload, setReload, onCommentDeleted }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);

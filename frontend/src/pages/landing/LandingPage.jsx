@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
-import "./Landing.css";
+import "./LandingPage.css";
 
 export default function Landing() {
   return (
