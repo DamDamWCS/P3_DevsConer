@@ -1,12 +1,11 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import NewMultiSelected from "../multiSelected/NewMultiSelected";
+import { MultiSelect } from "react-multi-select-component";
 
 function CreateSubject({
   reload,
   setReload,
   options,
-  setOptions,
   showModalCreateSubject,
   setShowModalCreateSubject,
 }) {
@@ -128,16 +127,19 @@ function CreateSubject({
                   Langages :
                 </label>
                 <div
-                  className={`  bg-light p-3 rounded  ${
+                  className={` bg-light p-3 rounded ${
                     selectedValue.length === 0 && "errorTag"
                   }`}
                 >
-                  <NewMultiSelected
-                    options={options}
-                    setOptions={setOptions}
-                    selectedValue={selectedValue}
-                    setSelectedValue={setSelectedValue}
-                  />
+                  {options && (
+                    <MultiSelect
+                      options={options}
+                      value={selectedValue}
+                      onChange={setSelectedValue}
+                      labelledBy="Select"
+                    />
+                  )}
+                  <span className="form-control-state" />
                 </div>
               </div>
               <div className="form-group ">
@@ -197,7 +199,6 @@ CreateSubject.propTypes = {
       label: PropTypes.string,
     })
   ).isRequired,
-  setOptions: PropTypes.func.isRequired,
   showModalCreateSubject: PropTypes.bool.isRequired,
   setShowModalCreateSubject: PropTypes.func.isRequired,
 };
