@@ -17,13 +17,10 @@ function EditSubject({
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitted },
   } = useForm();
-
   const [options, setOptions] = useState();
   const [selectedValue, setSelectedValue] = useState([]);
-  const [editSubject, setEditSubject] = useState(subject);
-  const [submited, setSubmited] = useState(false);
   const [errorMessage, setErrorMessage] = useState({ message: "" });
 
   useEffect(() => {
@@ -52,7 +49,6 @@ function EditSubject({
   }, []);
 
   useEffect(() => {
-    setEditSubject(subject);
     reset({ ...subject });
     if (subject.tags) {
       setSelectedValue(
@@ -63,17 +59,14 @@ function EditSubject({
 
   const handleCloseModal = () => {
     setShowModalEditSubject(false);
-    setEditSubject(subject);
     reset({ ...subject });
     setSelectedValue(
       subject.tags.map((tag) => ({ label: tag.name, value: tag.id }))
     );
     setErrorMessage({ message: "" });
-    setSubmited(false);
   };
 
-  const onSubmit = () => {
-    setSubmited(true);
+  const onSubmit = (editSubject) => {
     if (selectedValue.length >= 1) {
       const tagsFormat = [];
       selectedValue.map((tag) => tagsFormat.push(tag.value));
@@ -142,7 +135,10 @@ function EditSubject({
           <div className="modal-body">
             <form>
               <div className="form-group">
-                <label htmlFor="recipient-name" className="col-form-label">
+                <label
+                  htmlFor="recipient-name"
+                  className="required col-form-label"
+                >
                   Titre:
                 </label>
                 <div
@@ -151,32 +147,32 @@ function EditSubject({
                   }`}
                 >
                   <input
-                    {...register("title", { required: true, maxLength: 150 })}
+                    {...register("title", {
+                      required: true,
+                      minLength: 2,
+                      maxLength: 150,
+                    })}
                     type="text"
                     className="form-control"
-                    id="recipient-name"
-                    onChange={(e) =>
-                      setEditSubject({
-                        ...editSubject,
-                        title: e.target.value,
-                      })
-                    }
+                    id="title"
+                    defaultValue={subject.title}
                   />
                   <span className="form-control-state" />
                 </div>
-                {errors.title && (
-                  <span className="text-danger">
-                    Champ requis / longueur max : 150 charactères
-                  </span>
-                )}
+                <span className="text-muted font-weight-lighter ">
+                  min : 2 charactères / max : 150 charactères
+                </span>
               </div>
               <div className="form-group">
-                <label htmlFor="recipient-name" className="col-form-label">
+                <label
+                  htmlFor="recipient-name"
+                  className=" required col-form-label"
+                >
                   Langages :
                 </label>
                 <div
                   className={` bg-light p-3 rounded ${
-                    selectedValue.length === 0 && submited && "errorTag"
+                    selectedValue.length === 0 && isSubmitted && "errorTag"
                   }`}
                 >
                   {options && (
@@ -189,14 +185,17 @@ function EditSubject({
                   )}
                   <span className="form-control-state" />
                 </div>
-                {selectedValue.length === 0 && submited && (
+                {selectedValue.length === 0 && isSubmitted && (
                   <span className="text-danger">
                     Veulliez sélectionner au minimum un tag
                   </span>
                 )}
               </div>
               <div className="form-group">
-                <label htmlFor="message-text" className="col-form-label">
+                <label
+                  htmlFor="message-text"
+                  className="required col-form-label"
+                >
                   Message:
                 </label>
                 <div
@@ -205,18 +204,23 @@ function EditSubject({
                   }`}
                 >
                   <textarea
-                    {...register("text", { required: true, maxLength: 30000 })}
+                    {...register("text", {
+                      required: true,
+                      minLength: 10,
+                      maxLength: 30000,
+                    })}
                     className="form-control"
-                    id="message-text"
-                    onChange={(e) =>
-                      setEditSubject({ ...editSubject, text: e.target.value })
-                    }
+                    id="text"
+                    defaultValue={subject.text}
                   />
                   <span className="form-control-state" />
                 </div>
-                {errors.text && (
-                  <span className="text-danger">Champ requis</span>
-                )}
+                <span className="text-muted font-weight-lighter ">
+                  min : 10 charactères / max : 30000 charactères
+                </span>
+                <p className="text-center mt-2">
+                  <span className="text-red"> * </span>Champs obligatoires
+                </p>
               </div>
             </form>
           </div>

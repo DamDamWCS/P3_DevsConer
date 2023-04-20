@@ -22,7 +22,7 @@ function CreateSubject({
   };
 
   const controlTitle = (t) => {
-    if (t.length >= 2 && t.length <= 200) {
+    if (t.length >= 2 && t.length <= 150) {
       return true;
     }
     return false;
@@ -36,7 +36,7 @@ function CreateSubject({
   };
 
   const controlText = (l) => {
-    if (l.length >= 10 && l.length <= 10000) {
+    if (l.length >= 10 && l.length <= 30000) {
       return true;
     }
     return false;
@@ -117,16 +117,17 @@ function CreateSubject({
                 <input
                   type="text"
                   id="inputTitle"
-                  required
                   className="form-control"
-                  minLength={2}
-                  maxLength={200}
                   value={title}
                   placeholder="Titre du sujet"
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <span className="form-control-state" />
               </div>
+
+              <span className="text-muted font-weight-lighter ">
+                min : 2 charactères / max : 150 charactères
+              </span>
             </div>
             <div id="inputTags" className="form-group">
               <label htmlFor="recipient-name" className="required">
@@ -147,6 +148,11 @@ function CreateSubject({
                 )}
                 <span className="form-control-state" />
               </div>
+              {selectedValue.length === 0 && submited && (
+                <span className="text-danger">
+                  Veulliez sélectionner au minimum un tag
+                </span>
+              )}
             </div>
             <div className="form-group ">
               <label
@@ -163,15 +169,15 @@ function CreateSubject({
                 <textarea
                   type="text"
                   id="inputText"
-                  required
                   className="form-control"
-                  minLength={10}
-                  maxLength={10000}
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 />
                 <span className="form-control-state" />
               </div>
+              <span className="text-muted font-weight-lighter ">
+                min : 10 charactères / max : 30000 charactères
+              </span>
               <p className="text-center mt-2">
                 <span className="text-red"> * </span>Champs obligatoires
               </p>
