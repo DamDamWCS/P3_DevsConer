@@ -23,6 +23,7 @@ function EditSubject({
   const [options, setOptions] = useState();
   const [selectedValue, setSelectedValue] = useState([]);
   const [editSubject, setEditSubject] = useState(subject);
+  const [submited, setSubmited] = useState(false);
   const [errorMessage, setErrorMessage] = useState({ message: "" });
 
   useEffect(() => {
@@ -68,9 +69,11 @@ function EditSubject({
       subject.tags.map((tag) => ({ label: tag.name, value: tag.id }))
     );
     setErrorMessage({ message: "" });
+    setSubmited(false);
   };
 
   const onSubmit = () => {
+    setSubmited(true);
     if (selectedValue.length >= 1) {
       const tagsFormat = [];
       selectedValue.map((tag) => tagsFormat.push(tag.value));
@@ -173,7 +176,7 @@ function EditSubject({
                 </label>
                 <div
                   className={` bg-light p-3 rounded ${
-                    selectedValue.length === 0 && "errorTag"
+                    selectedValue.length === 0 && submited && "errorTag"
                   }`}
                 >
                   {options && (
@@ -186,7 +189,7 @@ function EditSubject({
                   )}
                   <span className="form-control-state" />
                 </div>
-                {selectedValue.length === 0 && (
+                {selectedValue.length === 0 && submited && (
                   <span className="text-danger">
                     Veulliez sélectionner au minimum un tag
                   </span>
