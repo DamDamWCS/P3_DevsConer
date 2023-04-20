@@ -12,11 +12,13 @@ function CreateSubject({
   const [selectedValue, setSelectedValue] = useState([]); // tag sélectionné
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [submited, setSubmited] = useState(false);
 
   const reset = () => {
     setTitle("");
     setSelectedValue([]);
     setText("");
+    setSubmited(false);
   };
 
   const controlTitle = (t) => {
@@ -41,6 +43,7 @@ function CreateSubject({
   };
 
   const handleValidate = (e) => {
+    setSubmited(true);
     e.preventDefault();
     const tags = selectedValue.map((items) => items.value);
 
@@ -84,107 +87,113 @@ function CreateSubject({
     >
       <div className="d-flex align-items-center pt-3 modal-dialog modal-lg t-10">
         <div className="modal-content">
-          <fieldset className=" was-validated">
-            <div className="modal-header">
-              <h5 className="h1 modal-title text-primary">
-                Ajouter un nouveau sujet
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-                onClick={handleCloseModal}
+          <div className="modal-header">
+            <h5 className="h1 modal-title text-primary">
+              Ajouter un nouveau sujet
+            </h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={handleCloseModal}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="title modal-body">
+            <div className="form-group">
+              <label
+                htmlFor="inputTitle"
+                className="font-weight-medium mb-2 required"
               >
-                <span aria-hidden="true">&times;</span>
-              </button>
+                Titre :
+              </label>
+              <div
+                className={`form-control-container ${
+                  !controlTitle(title) && submited && "is-invalid"
+                }`}
+              >
+                <input
+                  type="text"
+                  id="inputTitle"
+                  required
+                  className="form-control"
+                  minLength={2}
+                  maxLength={200}
+                  value={title}
+                  placeholder="Titre du sujet"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                <span className="form-control-state" />
+              </div>
             </div>
-            <div className="title modal-body">
-              <div className="form-group">
-                <label
-                  htmlFor="inputTitle"
-                  className="font-weight-medium mb-2 required"
-                >
-                  Titre :
-                </label>
-                <div className="form-control-container is-invalid">
-                  <input
-                    type="text"
-                    id="inputTitle"
-                    required
-                    className="form-control"
-                    minLength={2}
-                    maxLength={200}
-                    value={title}
-                    placeholder="Titre du sujet"
-                    onChange={(e) => setTitle(e.target.value)}
+            <div id="inputTags" className="form-group">
+              <label htmlFor="recipient-name" className="required">
+                Langages :
+              </label>
+              <div
+                className={` bg-light p-3 rounded ${
+                  selectedValue.length === 0 && submited && "errorTag"
+                }`}
+              >
+                {options && (
+                  <MultiSelect
+                    options={options}
+                    value={selectedValue}
+                    onChange={setSelectedValue}
+                    labelledBy="Select"
                   />
-                  <span className="form-control-state" />
-                </div>
-              </div>
-              <div id="inputTags" className="form-group">
-                <label htmlFor="recipient-name" className="required">
-                  Langages :
-                </label>
-                <div
-                  className={` bg-light p-3 rounded ${
-                    selectedValue.length === 0 && "errorTag"
-                  }`}
-                >
-                  {options && (
-                    <MultiSelect
-                      options={options}
-                      value={selectedValue}
-                      onChange={setSelectedValue}
-                      labelledBy="Select"
-                    />
-                  )}
-                  <span className="form-control-state" />
-                </div>
-              </div>
-              <div className="form-group ">
-                <label
-                  htmlFor="inputText"
-                  className="font-weight-medium mb-2 required"
-                >
-                  Texte :
-                </label>
-                <div className="form-control-container  is-invalid">
-                  <textarea
-                    type="text"
-                    id="inputText"
-                    required
-                    className="form-control"
-                    minLength={10}
-                    maxLength={10000}
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                  />
-                  <span className="form-control-state" />
-                </div>
-                <p className="text-center mt-2">
-                  <span className="text-red"> * </span>Champs obligatoires
-                </p>
+                )}
+                <span className="form-control-state" />
               </div>
             </div>
-            <div className="modal-footer d-flex justify-content-center pt-0 justify-content-sm-start">
-              <button
-                type="button"
-                onClick={handleCloseModal}
-                className="btn btn-secondary "
-                data-dismiss="modal"
+            <div className="form-group ">
+              <label
+                htmlFor="inputText"
+                className="font-weight-medium mb-2 required"
               >
-                Annuler
-              </button>
-              <button
-                type="button"
-                onClick={handleValidate}
-                className="btn btn-primary ml-2"
+                Texte :
+              </label>
+              <div
+                className={`form-control-container ${
+                  !controlText(text) && submited && "is-invalid"
+                }`}
               >
-                Valider
-              </button>
+                <textarea
+                  type="text"
+                  id="inputText"
+                  required
+                  className="form-control"
+                  minLength={10}
+                  maxLength={10000}
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+                <span className="form-control-state" />
+              </div>
+              <p className="text-center mt-2">
+                <span className="text-red"> * </span>Champs obligatoires
+              </p>
             </div>
-          </fieldset>
+          </div>
+          <div className="modal-footer d-flex justify-content-center pt-0 justify-content-sm-start">
+            <button
+              type="button"
+              onClick={handleCloseModal}
+              className="btn btn-secondary "
+              data-dismiss="modal"
+            >
+              Annuler
+            </button>
+            <button
+              type="button"
+              onClick={handleValidate}
+              className="btn btn-primary ml-2"
+            >
+              Valider
+            </button>
+          </div>
         </div>
       </div>
     </div>
