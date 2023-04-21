@@ -135,10 +135,7 @@ function EditSubject({
           <div className="modal-body">
             <form>
               <div className="form-group">
-                <label
-                  htmlFor="recipient-name"
-                  className="required col-form-label"
-                >
+                <label htmlFor="title" className="required col-form-label">
                   Titre:
                 </label>
                 <div
@@ -164,10 +161,7 @@ function EditSubject({
                 </span>
               </div>
               <div className="form-group">
-                <label
-                  htmlFor="recipient-name"
-                  className=" required col-form-label"
-                >
+                <label htmlFor="tags" className=" required col-form-label">
                   Langages :
                 </label>
                 <div
@@ -192,10 +186,7 @@ function EditSubject({
                 )}
               </div>
               <div className="form-group">
-                <label
-                  htmlFor="message-text"
-                  className="required col-form-label"
-                >
+                <label htmlFor="text" className="required col-form-label">
                   Message:
                 </label>
                 <div
