@@ -96,7 +96,7 @@ const login = (req, res, next) => {
         } else {
           errors.push({
             message:
-              "Votre compte a été désactivé, veuillez contacter l'administrateur",
+              "Votre compte a été désactivé, veuillez contacter le support l'adresse suivante : support@devscorner.sncf.fr",
           });
           res.status(401).send({ validationErrors: errors });
         }
