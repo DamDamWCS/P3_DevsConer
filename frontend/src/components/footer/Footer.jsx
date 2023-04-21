@@ -16,16 +16,14 @@ function Footer() {
                 </a>
               </li>
               <li className="pr-2">
-                <button
-                  onClick={(e) => {
-                    window.open("https://numerique.sncf.com/", "_blank");
-                    e.currentTarget.blur();
-                  }}
-                  type="button"
-                  className="btn-rounded btn-color-footer"
-                >
-                  <i className="icons-facebook" aria-hidden="true" />
-                </button>
+                <a href="mailto:support@devsconer.sncf.fr">
+                  <button
+                    type="button"
+                    className="btn-rounded btn-color-footer"
+                  >
+                    <i className="icons-support" aria-hidden="true" />
+                  </button>
+                </a>
               </li>
               <li className="pr-2">
                 <button
