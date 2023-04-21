@@ -1,6 +1,7 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/require-default-props */
 import PropTypes from "prop-types";
-import { useState, useContext } from "react";
+import { useState, useContext, Fragment } from "react";
 import DeleteItem from "../../deleteItem/DeleteItem";
 import TokenContext from "../../../services/context/TokenContext";
 import openCloseSubject from "./subjectFunctions";
@@ -30,7 +31,6 @@ function Subject({ subject, reload, setReload, setShowModalEditSubject }) {
       formatDateOptions
     );
   }
-
   return (
     <div className="rounded subject text-dark p-2 px-sm-3 mt-3">
       <div className="d-flex justify-content-between flex-wrap align-items-start mt-1">
@@ -50,8 +50,16 @@ function Subject({ subject, reload, setReload, setShowModalEditSubject }) {
         </div>
       </div>
       <div className="m-3 overflow-auto text-sm text-break px-md-5">
-        {subject.text}
+        {subject.text.split("\n").map((item, key) => {
+          return (
+            <Fragment key={key}>
+              {item}
+              <br />
+            </Fragment>
+          );
+        })}
       </div>
+
       {user && subject && (
         <div className="d-flex align-items-center px-sm-3 pb-sm-3">
           {subject.user_id === user.id ? (

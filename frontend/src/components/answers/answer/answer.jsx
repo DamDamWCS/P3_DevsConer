@@ -1,5 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/require-default-props */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import DeleteItem from "../../deleteItem/DeleteItem";
 import TokenContext from "../../../services/context/TokenContext";
@@ -123,7 +124,14 @@ function Answer({
             />
           ) : (
             <div className="mx-1 my-3 mx-sm-3 text-sm text-break overflow-auto">
-              {answer.text}
+              {answer.text.split("\n").map((item, key) => {
+                return (
+                  <Fragment key={key}>
+                    {item}
+                    <br />
+                  </Fragment>
+                );
+              })}
             </div>
           )}
         </div>

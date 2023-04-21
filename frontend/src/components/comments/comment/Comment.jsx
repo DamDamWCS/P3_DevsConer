@@ -1,5 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/require-default-props */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import TokenContext from "../../../services/context/TokenContext";
 import DeleteItem from "../../deleteItem/DeleteItem";
@@ -27,7 +28,14 @@ function Comment({ comment, reload, setReload, onCommentDeleted }) {
         <div className="w-100">
           {!showModifyComment ? (
             <div className="m-1 text-sm text-break overflow-auto">
-              {comment.text}
+              {comment.text.split("\n").map((item, key) => {
+                return (
+                  <Fragment key={key}>
+                    {item}
+                    <br />
+                  </Fragment>
+                );
+              })}
             </div>
           ) : (
             <ModifyComment
