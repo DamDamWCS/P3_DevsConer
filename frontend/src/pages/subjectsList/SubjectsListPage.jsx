@@ -1,13 +1,14 @@
 /* eslint-disable import/no-unresolved */
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import MultiSelected from "../../components/subjects/multiSelected/MultiSelected";
+import SearchFilter from "../../components/subjects/searchFilter/SearchFilter";
 import SubjectList from "../../components/subjects/SubjectList/SUbjectList";
 import "./SubjectListPage.css";
 import CreateSubject from "../../components/subjects/createSubject/CreateSubject";
 
 function SubjectListPage() {
   const [reload, setReload] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [showModalCreateSubject, setShowModalCreateSubject] = useState(false);
   const [options, setOptions] = useState();
   const [selectedValue, setSelectedValue] = useState([]); // tag sélectionné
@@ -81,7 +82,9 @@ function SubjectListPage() {
             </button>
           </div>
           {options && (
-            <MultiSelected
+            <SearchFilter
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
               options={options}
               setOptions={setOptions}
               selectedValue={selectedValue}
@@ -89,11 +92,13 @@ function SubjectListPage() {
             />
           )}
           {currentItems &&
-            currentItems.map((subject) => (
-              <div key={subject.id}>
-                <SubjectList subject={subject} />
-              </div>
-            ))}
+            currentItems
+              .filter((subject) => subject.title.includes(searchValue))
+              .map((subject) => (
+                <div key={subject.id}>
+                  <SubjectList subject={subject} />
+                </div>
+              ))}
         </div>
         <div className="ReactPaginateStyle">
           <ReactPaginate

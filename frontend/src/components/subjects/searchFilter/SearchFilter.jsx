@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import "./MultiSelected.css";
+import "./SearchFilter.css";
 
 function MultiSelected({
+  searchValue,
+  setSearchValue,
   options,
   setOptions,
   selectedValue,
@@ -38,6 +40,24 @@ function MultiSelected({
       ) : (
         <div>chargement ...</div>
       )}
+      <div className="pt-2">
+        <label htmlFor="Search">Rechercher :</label>
+        <div className="form-control-container has-right-icon">
+          <input
+            type=""
+            className="form-control bg-white border "
+            id="inputIcon2"
+            title="Example for auto-completion"
+            placeholder="Rechercher un titre de sujet..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <span className="form-control-state" />
+          <span className="form-control-icon">
+            <i className="icons-search" />
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -45,6 +65,8 @@ function MultiSelected({
 export default MultiSelected;
 
 MultiSelected.propTypes = {
+  searchValue: PropTypes.string.isRequired,
+  setSearchValue: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
