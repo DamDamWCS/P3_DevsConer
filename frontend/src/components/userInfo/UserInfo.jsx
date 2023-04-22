@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import TokenContext from "../../services/context/TokenContext";

@@ -17,6 +17,12 @@
   },
   "plugins": ["react", "import"],
   "rules": {
+    "react/no-array-index-key": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-useless-escape": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-no-constructed-context-values": "off",
     "no-console": "off",
     "no-restricted-syntax": [
       "error",

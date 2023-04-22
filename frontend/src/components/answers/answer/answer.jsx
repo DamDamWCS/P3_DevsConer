@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/require-default-props */
 import React, { useState, useEffect, useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import DeleteItem from "../../deleteItem/DeleteItem";

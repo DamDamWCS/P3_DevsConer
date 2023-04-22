@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import SearchFilter from "../../components/subjects/searchFilter/SearchFilter";

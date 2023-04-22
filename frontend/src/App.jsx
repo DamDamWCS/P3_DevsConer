@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
 import PublicRoutes from "./services/routes/PublicRoutes";

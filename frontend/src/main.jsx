@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import "@sncf/bootstrap-sncf.metier/dist/bootstrap-sncf.css";
 import React from "react";
 import ReactDOM from "react-dom/client";

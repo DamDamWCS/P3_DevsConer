@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-/* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from "prop-types";
 import "./EditSubject.css";
 import { useEffect, useState } from "react";

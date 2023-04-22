@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable import/no-extraneous-dependencies */
 import { Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "../../pages/login/LoginPage";
 import SignupPage from "../../pages/signup/SignupPage";

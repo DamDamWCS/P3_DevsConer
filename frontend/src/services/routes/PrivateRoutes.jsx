@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Route, Routes, Navigate } from "react-router-dom";
 import SubjectListPage from "../../pages/subjectsList/SubjectsListPage";
 import SubjectPage from "../../pages/subject/SubjectPage";

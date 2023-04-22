@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import SubjectList from "../subjects/SubjectList/SUbjectList";

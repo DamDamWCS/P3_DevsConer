@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/require-default-props */
 import React, { useState, useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import TokenContext from "../../../services/context/TokenContext";
