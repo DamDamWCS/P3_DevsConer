@@ -35,7 +35,7 @@ function Login() {
       })
       .then(() => setIsLoggedIn(true))
       .catch((error) => {
-        console.info(error);
+        console.error(error);
         setErrorMessage(error);
       });
   };

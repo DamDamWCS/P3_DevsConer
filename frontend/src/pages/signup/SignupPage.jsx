@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -129,6 +130,9 @@ function Signup() {
             throw new Error("Compte utilisateur déjà existant");
           }
           if (res.status === 201) {
+            alert(
+              "Compte créé avec succès, vous pouvez maintenant vous connecter"
+            );
             navigate("/login");
           }
         })

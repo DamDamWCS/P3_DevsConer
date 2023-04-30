@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `devs_corner`.`subject` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(150) NOT NULL,
   `text` MEDIUMTEXT NOT NULL,
-  `best_answer_id` INT DEFAULT 0,
+  `best_answer_id` INT NULL,
   `status_resolve` TINYINT NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `update_at` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
