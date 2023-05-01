@@ -60,7 +60,7 @@ function Subject({ subject, reload, setReload, setShowModalEditSubject }) {
 
       {user && subject && (
         <div className="d-flex align-items-center px-sm-3 pb-sm-3">
-          {subject.user_id === user.id ? (
+          {subject.user_id === user.id || user.role === "admin" ? (
             <button
               type="submit"
               className="btn btn-success btn-sm mr-3 text-white mb-2 mb-sm-0"
