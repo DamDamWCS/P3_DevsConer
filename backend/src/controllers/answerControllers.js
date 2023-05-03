@@ -47,7 +47,6 @@ const validateAnswerPut = (req, res, next) => {
   ) {
     next();
   } else {
-    console.info("debug");
     res.status(422).json("Structure des données incorrect");
   }
   if (errors.length) {
