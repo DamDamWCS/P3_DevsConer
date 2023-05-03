@@ -203,7 +203,7 @@ VALUES
  
 INSERT INTO tag (name)
 VALUES
-('JavaScript'), ('React'), ('Html'), ('CSS'), ('Java'), ('Angular'), ('Python');  
+('JavaScript'), ('React'), ('Html'), ('CSS'), ('Java'), ('Angular'), ('Python'),('Divers');  
 
 INSERT INTO subject_has_tag (subject_id, tag_id)
 VALUES

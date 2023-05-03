@@ -27,7 +27,6 @@ const validateAnswerPost = (req, res, next) => {
 };
 
 const validateAnswerPut = (req, res, next) => {
-  console.info(req.body);
   const { text, note } = req.body;
   const errors = [];
   if (note === null) {
